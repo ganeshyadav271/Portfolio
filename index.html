@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ganesh Yadav is a video editor, 2D animator and content strategist. See his YouTube explainers, animated stories and client work.">
+<meta property="og:title" content="Ganesh Yadav Portfolio">
+<meta property="og:description" content="Video editor, 2D animator and content strategist. Selected work and contact details.">
+<meta property="og:type" content="website">
+<title>Ganesh Yadav Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@700&display=swap">
+<style>
+html { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+/* Layout: a video editor's timeline. Hero as a sequence slate, work as 16:9 frames, experience as clips on a track. */
+:root {
+  --bg: #0f1319;
+  --surface: #171d26;
+  --surface-2: #1e2632;
+  --line: #2a3340;
+  --fg: #e8ebf0;
+  --muted: #9aa5b5;
+  --accent: #6cb4ff;
+  --accent-ink: #08121f;
+  --clip-a: #5b4fc7;
+  --clip-b: #1f8a82;
+  --clip-c: #b5652a;
+  --font-display: "Big Shoulders Display", "Noto Sans Devanagari", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3f5f8; --surface: #ffffff; --surface-2: #e9edf3; --line: #d3d9e2;
+    --fg: #121923; --muted: #52606f; --accent: #1565c0; --accent-ink: #ffffff;
+    --clip-a: #6d61d8; --clip-b: #26988f; --clip-c: #c4743a;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f3f5f8; --surface: #ffffff; --surface-2: #e9edf3; --line: #d3d9e2;
+  --fg: #121923; --muted: #52606f; --accent: #1565c0; --accent-ink: #ffffff;
+  --clip-a: #6d61d8; --clip-b: #26988f; --clip-c: #c4743a;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1080px; margin-inline: auto; }
+section { padding-block: 64px 8px; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 12px;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: .98; margin: 0; text-wrap: balance; letter-spacing: .005em; }
+h2 { font-size: clamp(36px, 6vw, 56px); text-transform: uppercase; }
+h3 { font-size: 26px; }
+p { margin: 0; }
+
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; justify-content: space-between; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.bar .mark { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.bar nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.bar nav a:hover { color: var(--fg); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; align-items: center; padding-block: 56px 16px; }
+.hero h1 { font-size: clamp(64px, 14vw, 132px); text-transform: uppercase; }
+.hero .roles { font-family: var(--font-mono); font-size: 14px; color: var(--accent); margin: 18px 0 18px; letter-spacing: .04em; }
+.hero .lede { max-width: 52ch; color: var(--muted); font-size: 18px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 6px;
+  font: 600 15px var(--font-body); text-decoration: none; cursor: pointer; border: 1px solid var(--line);
+  background: transparent; color: var(--fg);
+}
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:hover { filter: brightness(1.08); }
+.slate {
+  aspect-ratio: 4 / 5; max-width: 100%; border: 1px solid var(--line); border-radius: 6px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 11px, var(--line) 11px 12px) top / 100% 14px no-repeat,
+    linear-gradient(160deg, var(--surface-2), var(--surface));
+  display: grid; place-items: center; position: relative; overflow: hidden;
+}
+.slate .mono { font-family: var(--font-display); font-weight: 800; font-size: 120px; color: var(--accent); letter-spacing: .02em; }
+.slate .tc { position: absolute; left: 14px; bottom: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.slate .rec { position: absolute; right: 14px; bottom: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.slate .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 500; }
+
+/* work */
+.hint { color: var(--muted); font-size: 14px; margin-top: 10px; }
+.group { font-size: 22px; text-transform: uppercase; color: var(--accent); margin-top: 44px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); gap: 28px; margin-top: 24px; }
+.card { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.frame {
+  aspect-ratio: 16 / 9; max-width: 100%; border-radius: 6px; border: 1px solid var(--line);
+  position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 16px;
+  background: linear-gradient(135deg, var(--tint), var(--surface) 78%);
+  text-decoration: none; cursor: pointer;
+}
+.frame:hover .play { background: var(--accent); }
+.frame:hover .play::after { border-left-color: var(--accent-ink); }
+.frame.a { --tint: var(--clip-a); }
+.frame.b { --tint: var(--clip-b); }
+.frame.c { --tint: var(--clip-c); }
+.frame.d { --tint: var(--accent); }
+.frame.e { --tint: #a23b52; }
+.frame.f { --tint: #7a6a1f; }
+.frame.g { --tint: #3f7a3a; }
+.frame.h { --tint: #0f4c97; }
+.frame .play { position: absolute; top: 14px; right: 14px; width: 48px; height: 48px; border-radius: 50%; background: rgba(0,0,0,.45); display: grid; place-items: center; }
+.frame .play::after { content: ""; border-left: 11px solid #fff; border-block: 7px solid transparent; margin-left: 3px; }
+.frame .tc { position: absolute; top: 18px; left: 16px; font-family: var(--font-mono); font-size: 12px; color: #fff; opacity: .85; }
+.frame .t { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 5vw, 34px); line-height: 1; text-transform: uppercase; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.35); text-wrap: balance; }
+.card .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.card .meta b { color: var(--fg); font-weight: 500; }
+.card p { color: var(--muted); font-size: 15px; }
+.card .go { font-weight: 600; font-size: 15px; }
+.card .go.off { color: var(--muted); font-weight: 500; }
+
+/* timeline */
+.track-wrap { margin-top: 32px; overflow-x: auto; }
+.track { min-width: 560px; }
+.ruler { position: relative; height: 26px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.ruler span { position: absolute; top: 0; transform: translateX(-1px); padding-left: 6px; border-left: 1px solid var(--line); height: 26px; line-height: 20px; }
+.lane { position: relative; height: 58px; margin-top: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
+.clip { position: absolute; top: 5px; bottom: 5px; border-radius: 3px; padding: 6px 10px; font-size: 12.5px; font-weight: 600; color: #fff; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.clip small { display: block; font-family: var(--font-mono); font-weight: 400; font-size: 11px; opacity: .85; }
+.clip.a { background: var(--clip-a); } .clip.b { background: var(--clip-b); } .clip.c { background: var(--clip-c); }
+.jobs { display: grid; gap: 0; margin-top: 36px; }
+.job { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 8px 32px; padding-block: 26px; border-top: 1px solid var(--line); }
+.job .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.job .when b { display: block; color: var(--fg); font-weight: 500; margin-bottom: 2px; }
+.job h3 { margin-bottom: 10px; }
+.job ul { margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 6px; }
+.job li::marker { color: var(--accent); }
+
+/* skills */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 32px; margin-top: 32px; }
+.cols > div { min-width: 0; }
+.cols h3 { font-size: 22px; text-transform: uppercase; margin-bottom: 12px; color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.chips li { border: 1px solid var(--line); border-radius: 4px; padding: 5px 11px; font-size: 14px; background: var(--surface); }
+.plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--muted); }
+.plain li::marker { color: var(--accent); }
+.plain b { color: var(--fg); font-weight: 500; }
+
+/* contact */
+.contact { margin-top: 72px; padding: 36px 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.contact h2 { margin-bottom: 8px; }
+.contact > p { color: var(--muted); max-width: 56ch; }
+.rows { display: grid; gap: 10px; margin-top: 28px; max-width: 560px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.row .k { font-family: var(--font-mono); font-size: 12px; color: var(--muted); width: 64px; letter-spacing: .08em; text-transform: uppercase; }
+.row .v { flex: 1 1 180px; min-width: 0; overflow-wrap: anywhere; user-select: all; }
+.copy { font: 500 13px var(--font-body); padding: 5px 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); cursor: pointer; }
+footer { padding-block: 32px 40px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .slate { max-width: 220px; aspect-ratio: 1; order: -1; }
+  .slate .mono { font-size: 84px; }
+  .job { grid-template-columns: minmax(0, 1fr); }
+  section { padding-block-start: 48px; }
+  .contact { padding: 28px 18px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .frame { transition: transform .25s ease; }
+  .card:hover .frame { transform: translateY(-3px); }
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="bar">
+    <span class="mark">GANESH YADAV / PORTFOLIO</span>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Sequence 01 &middot; Delhi NCR</p>
+      <h1>Ganesh<br>Yadav</h1>
+      <p class="roles">VIDEO EDITOR &nbsp;/&nbsp; 2D ANIMATOR &nbsp;/&nbsp; CONTENT STRATEGIST</p>
+      <p class="lede">I edit YouTube explainers, Facebook video and animated stories, and I plan the content around them. For the last two years I led a video editing department, trained interns and ran research and content for several client accounts.</p>
+      <div class="cta">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="slate" role="img" aria-label="Portrait placeholder with the initials GY">
+      <span class="mono">GY</span>
+      <span class="tc">00:00:00:00</span>
+      <span class="rec"><i></i>READY</span>
+    </div>
+  </div>
+
+  <div class="facts">
+    <span><b>3+ yrs</b> editing and animation</span>
+    <span><b>Dec 2024 &ndash; Jun 2026</b> department lead, Skylan IT</span>
+    <span><b>Hindi</b> / <b>English</b></span>
+  </div>
+
+  <section id="work">
+    <p class="eyebrow">Selected work</p>
+    <h2>Videos I have edited</h2>
+    <p class="hint">Tap the play button on any frame to watch the video.</p>
+
+    <h3 class="group">News and exam-prep explainers</h3>
+    <div class="grid">
+      <article class="card">
+        <a class="frame a" href="https://youtu.be/bEt77XjVLBY" target="_blank" rel="noopener" aria-label="Watch Zomato's Rise to Dominance on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">Zomato&rsquo;s Rise to Dominance</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Startup News Daily</span><span><b>Format</b> YouTube explainer</span></div>
+        <p>A business story edited from research to final cut, with content strategy behind the topic, hook and structure.</p>
+        <a class="go" href="https://youtu.be/bEt77XjVLBY" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+
+      <article class="card">
+        <a class="frame b" href="https://youtu.be/F0JD1VyDXpw" target="_blank" rel="noopener" aria-label="Watch Meesho IPO Exposed on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">Meesho IPO Exposed</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Startup News Daily</span><span><b>Format</b> YouTube explainer</span></div>
+        <p>A news-style breakdown of a company listing, built around a strong opening, clear graphics and a steady pace.</p>
+        <a class="go" href="https://youtu.be/F0JD1VyDXpw" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+
+      <article class="card">
+        <a class="frame e" href="https://youtu.be/aOjG9IQ_ES4" target="_blank" rel="noopener" aria-label="Watch Israel vs Iran War on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">Israel vs Iran War</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Govt Exam Prep</span><span><b>Format</b> YouTube explainer</span></div>
+        <p>&ldquo;Is this the beginning of World War 3?&rdquo; A current-affairs video for government exam aspirants.</p>
+        <a class="go" href="https://youtu.be/aOjG9IQ_ES4" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+
+      <article class="card">
+        <a class="frame f" href="https://youtu.be/hSgLj0nctaQ" target="_blank" rel="noopener" aria-label="Watch How Oil Prices Shape World Politics on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">How Oil Prices Shape World Politics</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Govt Exam Prep</span><span><b>Format</b> YouTube explainer</span></div>
+        <p>A topic explainer that connects oil markets to global politics, made for exam preparation.</p>
+        <a class="go" href="https://youtu.be/hSgLj0nctaQ" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+    </div>
+
+    <h3 class="group">2D animation and motion graphics</h3>
+    <div class="grid">
+      <article class="card">
+        <a class="frame d" href="https://youtu.be/z_Umid63iQ4" target="_blank" rel="noopener" aria-label="Watch Jadui Patila on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">Jadui Patila</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Freelance</span><span><b>Format</b> Hindi moral story</span><span><b>Tool</b> Adobe Animate</span></div>
+        <p>An animated moral story for children, from character movement to scenes, sound and final export.</p>
+        <a class="go" href="https://youtu.be/z_Umid63iQ4" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+
+      <article class="card">
+        <a class="frame g" href="https://youtu.be/D1ShAtcqhIk" target="_blank" rel="noopener" aria-label="Watch Bhagya Ka Likha on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">भाग्य का लिखा</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Freelance</span><span><b>Format</b> Hindi heart-touching story</span><span><b>Tool</b> Adobe Animate</span></div>
+        <p>A heart-touching animated story in Hindi, animated and edited end to end.</p>
+        <a class="go" href="https://youtu.be/D1ShAtcqhIk" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+
+      <article class="card">
+        <a class="frame h" href="https://youtu.be/4hzCg0Aa0dY" target="_blank" rel="noopener" aria-label="Watch How to Apply for HDFC Bank FASTag Online on YouTube">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">HDFC Bank FASTag Online</span>
+        </a>
+        <div class="meta"><span><b>Client</b> HDFC Bank</span><span><b>Format</b> 2D explainer</span><span><b>Tools</b> After Effects, Illustrator</span></div>
+        <p>How to apply for an HDFC Bank FASTag online through MyCards and ChatBanking. Storyboard built in Adobe Illustrator and animated in After Effects.</p>
+        <a class="go" href="https://youtu.be/4hzCg0Aa0dY" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </article>
+    </div>
+
+    <h3 class="group">Social video</h3>
+    <div class="grid">
+      <article class="card">
+        <a class="frame c" href="https://www.facebook.com/weightlosswatcher1" target="_blank" rel="noopener" aria-label="Open the Weight Loss Watchers Facebook page">
+          <span class="tc">TC 00:00:00</span><span class="play"></span>
+          <span class="t">Weight Loss Watchers</span>
+        </a>
+        <div class="meta"><span><b>Client</b> Weight Loss Watchers</span><span><b>Format</b> Facebook video</span></div>
+        <p>Videos and content strategy for a health and wellness community page, made for mobile viewers.</p>
+        <a class="go" href="https://www.facebook.com/weightlosswatcher1" target="_blank" rel="noopener">Open the Facebook page &rarr;</a>
+      </article>
+    </div>
+  </section>
+
+
+  <section id="experience">
+    <p class="eyebrow">Experience</p>
+    <h2>Jul 2023 to Jun 2026</h2>
+    <div class="track-wrap">
+      <div class="track" role="img" aria-label="Timeline showing three roles from July 2023 to June 2026">
+        <div class="ruler">
+          <span style="left:0%">JUL 23</span>
+          <span style="left:16.67%">JAN 24</span>
+          <span style="left:33.33%">JUL 24</span>
+          <span style="left:50%">JAN 25</span>
+          <span style="left:66.67%">JUL 25</span>
+          <span style="left:83.33%">JAN 26</span>
+        </div>
+        <div class="lane">
+          <div class="clip a" style="left:0%;width:8.33%" title="Tutor, Jul to Sep 2023">Tutor</div>
+          <div class="clip b" style="left:11.11%;width:30.56%">Freelance animator<small>Nov 23 &ndash; Sep 24</small></div>
+          <div class="clip c" style="left:47.22%;width:52.78%">Video Editor Executive, Skylan IT<small>Dec 24 &ndash; Jun 26</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jobs">
+      <div class="job">
+        <div class="when"><b>Dec 2024 &ndash; Jun 2026</b>Skylan Information Technology</div>
+        <div>
+          <h3>Video Editor Executive and Department Lead</h3>
+          <ul>
+            <li>Led the video editing department and set quality and delivery standards.</li>
+            <li>Trained and mentored interns in editing workflow, tools and storytelling.</li>
+            <li>Edited and planned content for Startup News Daily and Weight Loss Watchers.</li>
+            <li>Handled research and content management for multiple client social media accounts.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Nov 2023 &ndash; Sep 2024</b>Freelance</div>
+        <div>
+          <h3>2D Animator</h3>
+          <ul>
+            <li>Animated Hindi moral stories for children in Adobe Animate 2023.</li>
+            <li>Handled storyboarding, character movement, sound and final export on my own.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when"><b>Jul &ndash; Sep 2023</b>IICS, Nirman Vihar</div>
+        <div>
+          <h3>Tutor (Intern)</h3>
+          <ul>
+            <li>Three-month internship teaching students concepts and practical software work.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="eyebrow">Skills</p>
+    <h2>What I work with</h2>
+    <div class="cols">
+      <div>
+        <h3>Software</h3>
+        <ul class="chips"><li>Premiere Pro</li><li>After Effects</li><li>Adobe Animate</li><li>Illustrator</li><li>Photoshop</li></ul>
+      </div>
+      <div>
+        <h3>Editing</h3>
+        <ul class="plain"><li>Cutting and pacing</li><li>Colour correction</li><li>Subtitles and motion text</li><li>2D animation and storyboards</li><li>Reels and long-form</li></ul>
+      </div>
+      <div>
+        <h3>Strategy</h3>
+        <ul class="plain"><li>Topic research</li><li>Hooks and titles</li><li>Multi-account content</li><li>Intern training</li></ul>
+      </div>
+      <div>
+        <h3>Education</h3>
+        <ul class="plain">
+          <li><b>BA (Programme)</b>, DU SOL, 2025</li>
+          <li><b>Diploma</b>, IICS Nirman Vihar</li>
+          <li><b>Class 12</b>, CBSE, 2022</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Let&rsquo;s work together</h2>
+    <p>I am open to video editor roles. Send a message or call, and I will reply quickly.</p>
+    <div class="rows">
+      <div class="row"><span class="k">Email</span><span class="v" id="v-email">ganeshyadav14656626@gmail.com</span><button class="copy" type="button" data-target="v-email">Copy</button></div>
+      <div class="row"><span class="k">Phone</span><span class="v" id="v-phone">9999483098</span><button class="copy" type="button" data-target="v-phone">Copy</button></div>
+      <div class="row"><span class="k">Base</span><span class="v">Indirapuram, Ghaziabad, Uttar Pradesh</span></div>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Ganesh Yadav</footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.target);
+    var text = el.textContent.trim();
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); };
+    var fallback = function () {
+      try {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Selected';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+      } catch (e) {}
+    };
+    try {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } catch (e) { fallback(); }
+  });
+});
+</script>
+
+</body>
+</html>
